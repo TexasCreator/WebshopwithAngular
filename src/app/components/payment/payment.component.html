@@ -1,0 +1,5 @@
+<div class="payment-container">
+  <h1>Payment</h1>
+  <p>Your total: {{ calculateTotal() | currency }}</p>
+  <button (click)="processPayment()">Confirm Payment</button>
+</div>

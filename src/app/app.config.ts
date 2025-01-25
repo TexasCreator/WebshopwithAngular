@@ -1,8 +1,6 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter } from '@angular/router';
-
-import { routes } from './app.routes';
-
-export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes)]
+export const AppConfig = {
+  apiBaseUrl: 'http://localhost:4200/', // Base URL for API requests
+  currency: 'USD', // Default currency for the webshop
+  defaultLanguage: 'en', // Default language setting
+  appTitle: 'My Webshop', // Application title
 };

@@ -1,0 +1,16 @@
+<div class="shop-container">
+  <header>
+    <h1>Shop</h1>
+    <p>Discover our exclusive products!</p>
+  </header>
+
+  <div class="products-grid">
+    <div *ngFor="let product of products" class="product-card">
+      <img [src]="product.image" [alt]="product.name" />
+      <h3>{{ product.name }}</h3>
+      <p>{{ product.description }}</p>
+      <p class="price">{{ product.price | currency }}</p>
+      <button (click)="addToCart(product)">Add to Cart</button>
+    </div>
+  </div>
+</div>
