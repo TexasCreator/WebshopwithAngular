@@ -22,6 +22,11 @@ export class CartComponent {
   }
 
   proceedToPayment() {
-    this.router.navigate(['/payment']); // Navigiere zur Payment-Seite
+    if (this.cart.length === 0) {
+      alert('Ihr Warenkorb ist leer. Fügen Sie bitte Produkte hinzu, bevor Sie fortfahren.');
+      return;
+    }
+    this.router.navigate(['/payment']); // Navigiere zur Zahlungsseite
   }
+
 }

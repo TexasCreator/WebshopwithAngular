@@ -1,6 +1,6 @@
-import {Component, PipeTransform} from '@angular/core';
-import { AppConfig } from './app.config';
-import {RouterLink, RouterOutlet} from '@angular/router';
+import {Component} from '@angular/core';
+import {Router, RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
+import {NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +8,28 @@ import {RouterLink, RouterOutlet} from '@angular/router';
   styleUrls: ['./app.component.css'],
   imports: [
     RouterOutlet,
-    RouterLink
+    RouterLink,
+    RouterLinkActive,
+    NgIf
   ]
 })
 export class AppComponent {
-  title = AppConfig.appTitle;
+  title = 'WebshopwithAngular';
+  isLoggedIn = false;
+
+  constructor(private router: Router) {
+    this.checkLoginStatus();
+  }
+
+  checkLoginStatus() {
+    this.isLoggedIn = sessionStorage.getItem('isLoggedIn') === 'true';
+  }
+
+  onLogout() {
+    sessionStorage.removeItem('isLoggedIn');
+    this.isLoggedIn = false;
+    alert('Sie wurden ausgeloggt.');
+    this.router.navigate(['/login']);
+  }
 }
+

@@ -1,5 +1,11 @@
-<div class="landing-container">
-  <h1>Willkommen!</h1>
-  <button [routerLink]="['/shop']">Zum Shop</button>
-</div>
+<header>
+  <h1>{{ title }}</h1>
+  <nav>
+    <a routerLink="/shop" routerLinkActive="active">Shop</a>
+    <a routerLink="/cart" *ngIf="isLoggedIn" routerLinkActive="active">Warenkorb</a>
+    <a routerLink="/payment" *ngIf="isLoggedIn" routerLinkActive="active">Zahlung</a>
+    <a routerLink="/login" *ngIf="!isLoggedIn" routerLinkActive="active">Login</a>
+    <a (click)="onLogout()" *ngIf="isLoggedIn" class="logout-link">Logout</a>
+  </nav>
+</header>
 <router-outlet></router-outlet>
