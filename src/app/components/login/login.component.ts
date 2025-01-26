@@ -74,15 +74,12 @@ export class LoginComponent {
   onLogin() {
     this.loginService.login(this.username, this.password).subscribe({
       next: (response) => {
-        if (response.success) {
-          sessionStorage.setItem('isLoggedIn', 'true');
-          this.router.navigate(['/shop']);
-        } else {
-          this.errorMessage = response.message;
-        }
+        this.loginService.saveToken(response.token);
+        sessionStorage.setItem('isLoggedIn', 'true');
+        this.router.navigate(['/shop']);
       },
       error: () => {
-        this.errorMessage = 'Login fehlgeschlagen. Bitte versuchen Sie es erneut.';
+        this.errorMessage = 'Login failed. Check your credentials.';
       },
     });
   }

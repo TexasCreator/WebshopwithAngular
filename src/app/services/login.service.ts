@@ -6,15 +6,23 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class LoginService {
-  private apiUrl = 'http://localhost:8080/api/auth/login'; // Backend URL
+  private apiUrl = 'http://localhost:8080/api/auth';
 
   constructor(private http: HttpClient) {}
 
   login(username: string, password: string): Observable<any> {
-    // Sends login data to backend
-    const loginData = { username, password };
-    return this.http.post<any>(this.apiUrl, loginData, {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-    });
+    return this.http.post<any>(`${this.apiUrl}/login`, { username, password });
+  }
+
+  saveToken(token: string) {
+    localStorage.setItem('token', token);
+  }
+
+  getToken(): string | null {
+    return localStorage.getItem('token');
+  }
+
+  logout() {
+    localStorage.removeItem('token');
   }
 }
