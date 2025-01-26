@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoginService } from '../../services/login.service';
 import {FormsModule} from '@angular/forms';
 import {NgIf} from '@angular/common';
 
@@ -20,6 +21,7 @@ import {NgIf} from '@angular/common';
       <p *ngIf="errorMessage" class="error-msg">{{ errorMessage }}</p>
     </div>
   `,
+
   imports: [
     FormsModule,
     NgIf
@@ -67,15 +69,21 @@ export class LoginComponent {
   password: string = '';
   errorMessage: string | null = null;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private loginService: LoginService) {}
 
   onLogin() {
-    // Temporäre Benutzervalidierung
-    if (this.username === 'demo' && this.password === 'password') {
-      sessionStorage.setItem('isLoggedIn', 'true');
-      this.router.navigate(['/shop']); // Weiterleitung zum Shop
-    } else {
-      this.errorMessage = 'Ungültige Anmeldedaten!';
-    }
+    this.loginService.login(this.username, this.password).subscribe({
+      next: (response) => {
+        if (response.success) {
+          sessionStorage.setItem('isLoggedIn', 'true');
+          this.router.navigate(['/shop']);
+        } else {
+          this.errorMessage = response.message;
+        }
+      },
+      error: () => {
+        this.errorMessage = 'Login fehlgeschlagen. Bitte versuchen Sie es erneut.';
+      },
+    });
   }
 }
