@@ -6,5 +6,8 @@
     <p>{{ product.price | currency: 'EUR' }}</p>
     <button (click)="addToCart(product)">Zum Warenkorb hinzufügen</button>
   </div>
+  <div *ngIf="!isLoggedIn" class="login-hint">
+    <p>Bitte loggen Sie sich ein, um Produkte zu kaufen!</p>
+  </div>
   <button [routerLink]="['/cart']">Zum Warenkorb</button>
 </div>

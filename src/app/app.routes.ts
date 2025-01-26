@@ -4,13 +4,14 @@ import { ShopComponent } from './components/shop/shop.component';
 import { CartComponent } from './components/cart/cart.component';
 import { PaymentComponent } from './components/payment/payment.component';
 import { LoginComponent } from './components/login/login.component';
+import { PaymentGuard } from './components/guards/payment.guard';
 
 
 const routes: Routes = [
   { path: '', redirectTo: '/shop', pathMatch: 'full' }, // Startseite leitet zu Shop um
   { path: 'shop', component: ShopComponent },
   { path: 'cart', component: CartComponent },
-  { path: 'payment', component: PaymentComponent },
+  { path: 'payment', component: PaymentComponent , canActivate: [PaymentGuard] },
   { path: 'login', component: LoginComponent }, // Neue Login Seite
   { path: '**', redirectTo: '/shop' } // Fallback für ungültige Routen
 ];

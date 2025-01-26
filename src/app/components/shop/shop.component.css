@@ -17,3 +17,12 @@
 .product-table th {
   background-color: #f4f4f4;
 }
+
+.login-hint {
+  background-color: #ffdddd;
+  color: #d8000c;
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #d8000c;
+  margin-bottom: 15px;
+}
