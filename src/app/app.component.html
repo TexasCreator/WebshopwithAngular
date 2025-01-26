@@ -1,18 +1,5 @@
-<div class="app-container">
-  <header>
-    <h1>{{ title }}</h1>
-    <nav>
-      <a routerLink="/shop" routerLinkActive="active">Shop</a>
-      <a routerLink="/cart" routerLinkActive="active">Cart</a>
-      <a routerLink="/payment" routerLinkActive="active">Payment</a>
-    </nav>
-  </header>
-  <body>Hallo Welt</body>
-  <main>
-    <router-outlet></router-outlet>
-  </main>
-
-  <footer>
-    <p>© 2025 C. Schwabe. All rights reserved.</p>
-  </footer>
+<div class="landing-container">
+  <h1>Willkommen!</h1>
+  <button [routerLink]="['/shop']">Zum Shop</button>
 </div>
+<router-outlet></router-outlet>

@@ -1,30 +1,32 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { AppRoutingModule } from './app.routes';
 
 import { AppComponent } from './app.component';
-import { LandingpageComponent } from './components/landing-page/landingpage.component';
 import { ShopComponent } from './components/shop/shop.component';
 import { CartComponent } from './components/cart/cart.component';
 import { PaymentComponent } from './components/payment/payment.component';
-import { appRoutes } from './app.routes';
 
 @NgModule({
   declarations: [
-
-  ],
-  imports: [
-    BrowserModule,
-    RouterModule.forRoot(appRoutes),
-    HttpClientModule,
-    AppComponent,
-    LandingpageComponent,
+    // Alle Komponenten, die in diesem Modul Teil der Webshop-Logik sind, werden hier hinzugefügt.
     ShopComponent,
     CartComponent,
-    PaymentComponent
+    PaymentComponent,
+  ],
+  imports: [
+    // Importieren der notwendigen Module für die Funktionalitäten
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    AppComponent,
+
+    // Unterstützt erforderlich für Formulare
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent] // Die Hauptkomponente, die gestartet wird
 })
-export class AppModule {}
+export class AppModule { }
+
+

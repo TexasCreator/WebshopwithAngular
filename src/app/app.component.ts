@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
+import {Component, PipeTransform} from '@angular/core';
 import { AppConfig } from './app.config';
-import {RouterOutlet} from '@angular/router';
+import {RouterLink, RouterOutlet} from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
   imports: [
-    RouterOutlet
+    RouterOutlet,
+    RouterLink
   ]
 })
 export class AppComponent {

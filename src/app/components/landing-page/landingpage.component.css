@@ -40,6 +40,22 @@
   color: #666;
 }
 
+.shop-button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.shop-button:hover {
+  background-color: #45a049;
+}
+
+
 footer .btn {
   padding: 10px 20px;
   background-color: #28a745;

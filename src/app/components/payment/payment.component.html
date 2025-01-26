@@ -1,5 +1,5 @@
 <div class="payment-container">
-  <h1>Payment</h1>
-  <p>Your total: {{ calculateTotal() | currency }}</p>
-  <button (click)="processPayment()">Confirm Payment</button>
+  <h1>Bezahlseite</h1>
+  <p>{{ message }}</p>
+  <button [routerLink]="['/shop']">Zurück zum Shop</button>
 </div>
