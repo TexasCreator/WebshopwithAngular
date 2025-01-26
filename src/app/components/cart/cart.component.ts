@@ -1,35 +1,27 @@
-import { Component, OnInit } from '@angular/core';
-import {CurrencyPipe, NgForOf, NgIf} from '@angular/common';
-import {RouterLink} from '@angular/router';
+import { Component } from '@angular/core';
+import { CartService } from '../../services/cart.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
-  imports: [
-    CurrencyPipe,
-    NgIf,
-    NgForOf,
-    RouterLink
-  ],
+  standalone: false,
   styleUrls: ['./cart.component.css']
 })
-export class CartComponent implements OnInit {
+export class CartComponent {
   cart: any[] = [];
 
-  ngOnInit() {
-    this.loadCart();
+  constructor(private cartService: CartService, private router: Router) {
+    this.cart = this.cartService.getCart(); // Hole Warenkorb-Daten aus dem CartService
   }
 
-  loadCart(): void {
-    this.cart = Object.values(localStorage).map((item) => JSON.parse(item));
+  clearCart() {
+    this.cartService.clearCart();
+    this.cart = [];
+    alert('Der Warenkorb wurde geleert.');
   }
 
-  removeFromCart(product: any): void {
-    localStorage.removeItem(product.id);
-    this.loadCart();
-  }
-
-  calculateTotal(): number {
-    return this.cart.reduce((total, item) => total + item.price * item.quantity, 0);
+  proceedToPayment() {
+    this.router.navigate(['/payment']); // Navigiere zur Payment-Seite
   }
 }
